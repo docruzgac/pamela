@@ -18,11 +18,11 @@ body{
   background:url("pamela.jpg") no-repeat center/cover fixed;
 }
 
-/* OSCURECIDO */
+/* OSCURECER */
 .overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.35);
+  background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.15));
   z-index:1;
 }
 
@@ -50,8 +50,8 @@ body{
 }
 
 @keyframes glow{
-  from{box-shadow:0 0 16px #ffc8dd;}
-  to{box-shadow:0 0 38px #bde0fe;}
+  from{box-shadow:0 0 16px #ffd6e0;}
+  to{box-shadow:0 0 40px #bde0fe;}
 }
 
 /* TITULO */
@@ -155,7 +155,7 @@ canvas{
   to{transform:translateY(-120vh);opacity:0;}
 }
 
-/* ===== 7/24/365 PASTEL VISTOSO ===== */
+/* ===== 7/24/365 — PASTEL VISTOSO ===== */
 .floating-text{
   position:fixed;
   bottom:-60px;
@@ -163,19 +163,18 @@ canvas{
   transform:translateX(-50%);
   font-size:46px;
   font-weight:900;
-  letter-spacing:2px;
   background:linear-gradient(
     90deg,
-    #ffafcc,   /* rosa */
-    #cdb4db,   /* lila */
-    #bde0fe,   /* azul pastel */
-    #caffbf,   /* menta */
-    #fff1b6    /* amarillo suave */
+    #ffd6e0,
+    #ffcad4,
+    #fff1b6,
+    #d4f8d4,
+    #bde0fe,
+    #cdb4db
   );
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  text-shadow:
-    0 0 8px rgba(255,255,255,.35);
+  text-shadow:0 6px 18px rgba(255,255,255,.35);
   animation:rise 6s linear forwards;
   z-index:5;
 }
@@ -234,8 +233,10 @@ canvas{
 const msg=document.getElementById("msg");
 const canvas=document.getElementById("confetti");
 const ctx=canvas.getContext("2d");
+
 canvas.width=innerWidth;
 canvas.height=innerHeight;
+
 let confetti=[];
 
 function celebrate(){
@@ -245,14 +246,15 @@ function celebrate(){
   showDots();
 }
 
+/* CONFETI */
 function launchConfetti(){
   confetti=[];
-  for(let i=0;i<160;i++){
+  for(let i=0;i<170;i++){
     confetti.push({
       x:Math.random()*canvas.width,
       y:Math.random()*canvas.height,
       r:Math.random()*5+3,
-      c:`hsl(${Math.random()*360},90%,75%)`,
+      c:`hsl(${Math.random()*360},85%,70%)`,
       v:Math.random()*3+2
     });
   }
@@ -269,6 +271,7 @@ function launchConfetti(){
   })();
 }
 
+/* GLOBOS + TEXTO */
 function launchBalloonsAndText(){
   const t=document.createElement("div");
   t.className="floating-text";
@@ -280,12 +283,13 @@ function launchBalloonsAndText(){
     const b=document.createElement("div");
     b.className="balloon";
     b.style.left=Math.random()*100+"vw";
-    b.style.background=`hsl(${Math.random()*360},85%,80%)`;
+    b.style.background=`hsl(${Math.random()*360},80%,75%)`;
     document.body.appendChild(b);
     setTimeout(()=>b.remove(),6000);
   }
 }
 
+/* PUNTOS */
 function showDots(){
   const d=document.createElement("div");
   d.className="dots";
@@ -297,5 +301,3 @@ function showDots(){
 
 </body>
 </html>
-
-
