@@ -2,246 +2,232 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Felicidades Pamela</title>
 
 <style>
-html,body{
- margin:0;
- height:100%;
- font-family:-apple-system,BlinkMacSystemFont,sans-serif;
- overflow:hidden;
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: hidden;
 }
 
 /* Fondo */
-body{
- background:
-  linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.75)),
-  url("pamela.jpg") center/cover no-repeat;
- display:flex;
- align-items:center;
- justify-content:center;
-}
-
-/* Tarjeta */
-.card{
- width:90%;
- max-width:380px;
- padding:26px;
- border-radius:30px;
- background:rgba(255,255,255,.15);
- backdrop-filter:blur(18px);
- box-shadow:0 25px 70px rgba(0,0,0,.6);
- color:white;
- text-align:center;
-}
-
-/* Marco animado */
-.frame{
- padding:6px;
- border-radius:26px;
- background:linear-gradient(270deg,#ff4fa3,#ffd1e8,#ff4fa3);
- background-size:600% 600%;
- animation:frameGlow 6s ease infinite;
- margin-bottom:18px;
-}
-
-@keyframes frameGlow{
- 0%{background-position:0% 50%}
- 50%{background-position:100% 50%}
- 100%{background-position:0% 50%}
-}
-
-.photo{
- border-radius:22px;
- width:100%;
- display:block;
-}
-
-/* Texto */
-h1{
- margin:10px 0 6px;
- font-size:26px;
- font-weight:900;
-}
-p{
- font-size:15px;
- opacity:.95;
-}
-
-/* Botón corazón */
-.heart-btn{
- background:linear-gradient(135deg,#ff4fa3,#ff87c8);
- border:none;
- padding:18px 28px;
- border-radius:22px;
- font-size:20px;
- font-weight:900;
- color:white;
- display:inline-flex;
- gap:10px;
- animation:pulse 1.3s infinite;
-}
-
-@keyframes pulse{
- 0%{transform:scale(1)}
- 50%{transform:scale(1.08)}
- 100%{transform:scale(1)}
-}
-
-/* Mensaje */
-.message{
- margin-top:22px;
- padding:18px;
- border-radius:22px;
- background:rgba(255,255,255,.18);
- backdrop-filter:blur(16px);
- display:none;
-}
-
-.message.show{
- display:block;
- animation:fadeUp .6s ease;
-}
-
-@keyframes fadeUp{
- from{opacity:0;transform:translateY(12px)}
- to{opacity:1;transform:translateY(0)}
-}
-
-/* Puntos rosas */
-.dots{
- margin-top:12px;
- display:flex;
- justify-content:center;
- gap:8px;
-}
-
-.dot{
- width:10px;
- height:10px;
- border-radius:50%;
- background:#ff4fa3;
- animation:dotFade 1.6s infinite;
-}
-
-.dot:nth-child(2){animation-delay:.3s}
-.dot:nth-child(3){animation-delay:.6s}
-
-@keyframes dotFade{
- 0%{opacity:1}
- 60%{opacity:.2}
- 100%{opacity:0}
-}
-
-/* Globos */
-.balloon{
- position:fixed;
- bottom:-120px;
- width:50px;
- height:65px;
- border-radius:50%;
- animation:float 6s linear infinite;
- z-index:5;
-}
-
-@keyframes float{
- to{transform:translateY(-120vh)}
+body {
+  background: linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.55)),
+              url("pamela.jpg") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Confeti */
-canvas{
- position:fixed;
- inset:0;
- pointer-events:none;
- z-index:10;
+canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Tarjeta */
+.card {
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 26px 22px;
+  width: min(92%, 420px);
+  text-align: center;
+  color: white;
+  z-index: 5;
+}
+
+/* Título */
+.big-title {
+  font-size: clamp(36px, 7vw, 48px);
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+/* Botón corazón */
+.heart-btn {
+  background: linear-gradient(135deg, #ff4fa3, #ff8fd3);
+  border: none;
+  border-radius: 20px;
+  padding: 16px 26px;
+  color: white;
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(255,79,163,.45);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.heart {
+  width: 26px;
+}
+
+/* Mensaje */
+.toast {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.18);
+  backdrop-filter: blur(14px);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: .4s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast p {
+  font-size: 18px;
+  font-weight: 900;
+  margin: 0;
+}
+
+.toast small {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+/* Puntos rosas */
+.dots {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #ff4fa3;
+  border-radius: 50%;
+  animation: fade 1.4s infinite;
+}
+
+.dot:nth-child(2) { animation-delay: .2s; }
+.dot:nth-child(3) { animation-delay: .4s; }
+
+@keyframes fade {
+  0% { opacity: .2; }
+  50% { opacity: 1; }
+  100% { opacity: .2; }
+}
+
+/* Texto flotante 7/24/365 */
+#floating-text {
+  position: fixed;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(28px, 6vw, 44px);
+  font-weight: 900;
+  letter-spacing: 2px;
+  opacity: 0;
+  z-index: 6;
+  background: linear-gradient(90deg, #ffd1dc, #c1e1ff, #d4f8d4, #fff1b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes floatUp {
+  0% { bottom: -60px; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { bottom: 110%; opacity: 0; }
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="fx"></canvas>
+<canvas id="confetti"></canvas>
+<div id="floating-text">7/24/365</div>
 
 <div class="card">
+  <div class="big-title">🎓 Tu primer título</div>
 
- <div class="frame">
-  <img src="pamela.jpg" class="photo">
- </div>
+  <button class="heart-btn" id="btn">
+    <svg class="heart" viewBox="0 0 24 24">
+      <path fill="white" d="M12 21s-7-4.6-9.5-9C.4 8.2 2 5 5.5 5c2 0 3.5 1.2 4.5 2.6C11 6.2 12.5 5 14.5 5c3.5 0 5.1 3.2 3 7-2.5 4.4-9.5 9-9.5 9z"/>
+    </svg>
+    Un logro más
+  </button>
 
- <h1>🎓 ¡Felicidades!</h1>
- <p>Entrega de título</p>
+  <div class="toast" id="toast">
+    <p>
+      ¡Felicidades, Lic. Pamela Díaz de Leon!
+      <small>🎉 Celebramos tu entrega de título 🎊</small>
+    </p>
 
- <button class="heart-btn" onclick="celebrar()">💖 Celebrar</button>
-
- <div class="message" id="msg">
-  <strong>Lic. Pamela Díaz de Leon</strong><br>
-  🎉 Que este logro sea solo el comienzo de muchos éxitos 🎊
-
-  <div class="dots">
-   <div class="dot"></div>
-   <div class="dot"></div>
-   <div class="dot"></div>
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
   </div>
- </div>
-
 </div>
 
 <script>
-const canvas=document.getElementById("fx");
-const ctx=canvas.getContext("2d");
-canvas.width=innerWidth;
-canvas.height=innerHeight;
-let pieces=[];
+/* Confeti */
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+canvas.width = innerWidth;
+canvas.height = innerHeight;
 
-function celebrar(){
- document.getElementById("msg").classList.add("show");
- confeti();
- globos();
- if(navigator.vibrate) navigator.vibrate([30,40,30]);
+let pieces = [];
+
+function confetti() {
+  for (let i = 0; i < 160; i++) {
+    pieces.push({
+      x: canvas.width / 2,
+      y: canvas.height / 3,
+      vx: (Math.random() - .5) * 8,
+      vy: Math.random() * -8 - 4,
+      size: Math.random() * 8 + 4,
+      color: `hsl(${Math.random()*360},70%,85%)`,
+      life: 120
+    });
+  }
 }
 
-function confeti(){
- for(let i=0;i<180;i++){
-  pieces.push({
-   x:Math.random()<.5?0:canvas.width,
-   y:Math.random()*canvas.height,
-   vx:(Math.random()<.5?1:-1)*Math.random()*6,
-   vy:Math.random()*-5,
-   c:`hsl(${Math.random()*360},100%,70%)`,
-   s:Math.random()*6+4,
-   life:120
+function animate() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pieces.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += .15;
+    p.life--;
+    ctx.fillStyle = p.color;
+    ctx.fillRect(p.x,p.y,p.size,p.size);
   });
- }
- requestAnimationFrame(animar);
+  pieces = pieces.filter(p => p.life > 0);
+  requestAnimationFrame(animate);
 }
+animate();
 
-function animar(){
- ctx.clearRect(0,0,canvas.width,canvas.height);
- pieces.forEach(p=>{
-  p.x+=p.vx;
-  p.y+=p.vy;
-  p.vy+=.15;
-  p.life--;
-  ctx.fillStyle=p.c;
-  ctx.fillRect(p.x,p.y,p.s,p.s);
- });
- pieces=pieces.filter(p=>p.life>0);
- if(pieces.length) requestAnimationFrame(animar);
-}
+/* Acción botón */
+document.getElementById("btn").onclick = () => {
+  document.getElementById("toast").classList.add("show");
+  confetti();
 
-function globos(){
- for(let i=0;i<6;i++){
-  let b=document.createElement("div");
-  b.className="balloon";
-  b.style.left=Math.random()*100+"%";
-  b.style.background=`hsl(${Math.random()*360},100%,70%)`;
-  b.style.animationDuration=4+Math.random()*3+"s";
-  document.body.appendChild(b);
-  setTimeout(()=>b.remove(),7000);
- }
-}
+  const ft = document.getElementById("floating-text");
+  ft.style.animation = "none";
+  void ft.offsetWidth;
+  ft.style.animation = "floatUp 4.5s ease-in-out";
+};
 </script>
 
 </body>
 </html>
+
+
